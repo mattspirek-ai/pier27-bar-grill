@@ -39,12 +39,25 @@
     <nav class="nav" aria-label="Sections">
       <a href="#about">The Spot</a>
       <a href="#menu">Menu</a>
+      <a href="#whatson">What's On</a>
       <a href="#hours">Hours</a>
       <a href="#find">Find Us</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="btn btn--gold btn--sm" href="tel:+18303157437"><span class="hide-sm">(830) 315-7437</span><span class="only-sm">Call</span></a>
+    <button class="navtoggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navPanel">
+      <span class="navtoggle__bars" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
   </div>
+  <nav class="navpanel" id="navPanel" aria-label="Sections" hidden>
+    <a href="#about">The Spot</a>
+    <a href="#menu">Menu</a>
+    <a href="#whatson">What's On</a>
+    <a href="#hours">Hours</a>
+    <a href="#find">Find Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <main>
@@ -228,6 +241,29 @@
   </div>
 </section>
 
+<section class="band reveal" id="whatson">
+  <div class="shell split">
+    <div class="stack">
+      <p class="eyebrow"><span class="rule" aria-hidden="true"></span>What's On</p>
+      <h2>KARAOKE EVERY<br>WEDNESDAY NIGHT</h2>
+      <p class="body">Grab the mic from 7:30 to 10:30 PM, hosted by DJ MicDrop. All voices welcome — good drinks, good food, good times.</p>
+      <a class="btn btn--line btn--start" href="https://www.facebook.com/profile.php?id=61592674806978" rel="noopener noreferrer">More on Facebook</a>
+    </div>
+    <div class="card">
+      <div class="card__top">
+        <span class="kicker">Karaoke Night</span>
+      </div>
+      <hr>
+      <dl class="hours">
+        <div><dt>Every Wednesday</dt><dd>7:30 – 10:30 PM</dd></div>
+        <div><dt>Hosted by</dt><dd>DJ MicDrop</dd></div>
+      </dl>
+      <p class="note">Michael Luebano on the mic. No cover — just show up and sing.</p>
+      <a class="card__tel" href="tel:+18303157437">(830) 315-7437</a>
+    </div>
+  </div>
+</section>
+
 <section class="gallery reveal">
   <div class="shell gallery__head">
     <h2>EVENINGS AT PIER 27</h2>
@@ -324,6 +360,45 @@
     });
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
   els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+<script>
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var panel = document.getElementById('navPanel');
+  if (!toggle || !panel) { return; }
+
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    panel.hidden = !open;
+    document.body.classList.toggle('nav-open', open);
+  }
+
+  toggle.addEventListener('click', function () {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  panel.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { setOpen(false); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (toggle.getAttribute('aria-expanded') !== 'true') { return; }
+    if (!panel.contains(e.target) && !toggle.contains(e.target)) { setOpen(false); }
+  });
+
+  // The panel is mobile-only; make sure it never stays open on a resize to desktop.
+  var wide = window.matchMedia('(min-width:721px)');
+  (wide.addEventListener ? wide.addEventListener.bind(wide, 'change') : wide.addListener.bind(wide))(function (e) {
+    if (e.matches) { setOpen(false); }
+  });
 })();
 </script>
 </body>
