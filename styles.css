@@ -20,7 +20,10 @@ img{max-width:100%;display:block}
 a{color:var(--amber);text-decoration:none}
 a:hover{color:var(--cream)}
 h1,h2,h3{margin:0}
-::selection{background:var(--amber);color:var(--ink)}
+/* Translucent so a selected display headline tints rather than blotting out
+   the photo behind it; text stays cream and readable. */
+::selection{background:rgba(233,161,59,.34);color:var(--cream)}
+::-moz-selection{background:rgba(233,161,59,.34);color:var(--cream)}
 
 .shell{width:var(--shell);margin-inline:auto}
 .stack{display:grid;gap:24px;min-width:0}
