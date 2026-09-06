@@ -1,0 +1,263 @@
+/* Pier 27 Bar & Grill — temporary one-pager styles */
+
+:root {
+  --bg-deep: #0c0a08;
+  --bg-card: #16120e;
+  --gold: #c9a66b;
+  --gold-soft: #e0c48a;
+  --tan: #d4b896;
+  --cream: #f5ebe0;
+  --muted: #a89888;
+  --river: #2a4a5c;
+  --sunset-orange: #c45c2a;
+  --sunset-rose: #8b3a3a;
+  --font-serif: "Georgia", "Times New Roman", "Palatino Linotype", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --max: 40rem;
+  --space: clamp(1rem, 4vw, 2rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--cream);
+  background: var(--bg-deep);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle river/sunset wash behind everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% -10%, rgba(196, 92, 42, 0.28), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 80% 20%, rgba(139, 58, 58, 0.18), transparent 50%),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(42, 74, 92, 0.35), transparent 60%),
+    linear-gradient(180deg, #120e0a 0%, var(--bg-deep) 40%, #0a1014 100%);
+}
+
+a {
+  color: var(--gold-soft);
+  text-underline-offset: 0.2em;
+  transition: color 0.15s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--cream);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(100% - 2 * var(--space), var(--max));
+  margin-inline: auto;
+}
+
+.hero {
+  padding: clamp(3.5rem, 12vw, 6rem) 0 clamp(2.5rem, 8vw, 4rem);
+  text-align: center;
+}
+
+.hero__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero__name {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 11vw, 4rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  color: var(--gold-soft);
+  text-shadow: 0 2px 24px rgba(201, 166, 107, 0.25);
+}
+
+.hero__sub {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tan);
+}
+
+.hero__tagline {
+  margin: 1.25rem auto 0;
+  max-width: 22rem;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+.hero__rule {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  margin: 1.75rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border: 0;
+}
+
+main {
+  padding-bottom: clamp(3rem, 10vw, 5rem);
+}
+
+.section {
+  padding: 1.75rem 0;
+}
+
+.section + .section {
+  border-top: 1px solid rgba(201, 166, 107, 0.12);
+}
+
+.section__title {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.section p {
+  margin: 0 0 0.85rem;
+  color: var(--cream);
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+.note {
+  margin-top: 1rem !important;
+  padding: 0.85rem 1rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  background: rgba(22, 18, 14, 0.7);
+  border: 1px solid rgba(201, 166, 107, 0.2);
+  border-radius: 0.4rem;
+}
+
+.note strong {
+  color: var(--tan);
+  font-weight: 600;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-list li {
+  margin: 0 0 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: baseline;
+}
+
+.contact-list .label {
+  flex: 0 0 4.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.contact-list a,
+.contact-list span.value {
+  color: var(--gold-soft);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.contact-list a:hover,
+.contact-list a:focus-visible {
+  text-decoration: underline;
+  color: var(--cream);
+}
+
+.cta {
+  margin-top: 0.5rem;
+  padding: 2rem 0 0;
+  text-align: center;
+}
+
+.cta p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+  font-style: italic;
+  color: var(--tan);
+}
+
+.site-footer {
+  padding: 1.5rem 0 2.5rem;
+  border-top: 1px solid rgba(201, 166, 107, 0.12);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--bg-deep) !important;
+  text-decoration: none !important;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  border-radius: 999px;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.map-link:hover,
+.map-link:focus-visible {
+  filter: brightness(1.08);
+  color: var(--bg-deep) !important;
+}
+
+.map-link:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+}
+
+@media (min-width: 480px) {
+  .contact-list li {
+    gap: 0.5rem 1rem;
+  }
+}
