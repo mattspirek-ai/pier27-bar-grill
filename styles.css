@@ -180,6 +180,15 @@ h2{font:400 clamp(30px,4.4vw,58px)/1.02 var(--display);color:var(--cream)}
 
 @media (max-width:720px){
   .nav{display:none}
+  /* .nav carried the margin-left:auto that pushed the header's right-hand
+     items over, so without it Call + toggle packed against the brand. */
+  .bar-top__inner>.btn--sm{margin-left:auto}
+  /* svh, not dvh: iOS resolves dvh against whatever Safari's chrome is doing,
+     so the hero resized mid-scroll and ran taller than it measured here. */
+  .hero{min-height:min(44svh,340px)}
+  .hero__inner{padding:26px 0 24px}
+  /* Call/Directions are already in the fixed bottom bar on every screen. */
+  .hero__ctas .btn{display:none}
   .navtoggle{display:inline-flex}
   .navpanel{display:grid;border-top:1px solid var(--line);background:rgba(11,10,9,.97);max-height:min(70vh,420px);overflow-y:auto;overscroll-behavior:contain}
   .navpanel[hidden]{display:none}
